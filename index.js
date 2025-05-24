@@ -1,29 +1,54 @@
 const express = require("express");
 const server = express();
 
-//http://localhost:3000/hello?nome=felipe&idade=23
-//Query params = ?nome=felipe&idade=23
+server.use(express.json());
 
-//http://localhost:3000/hello/felipe/23
-//Route params = /hello/:nome/:idade
+let customers = [
+  {
+    id: 1,
+    name: "Diego",
+    site: "rocketseat.com.br",
+  },
+  {
+    id: 2,
+    name: "Gabriel",
+    site: "rocketseat.com.br",
+  },
+  {
+    id: 3,
+    name: "Lucas",
+    site: "rocketseat.com.br",
+  },
+];
 
-server.get("/hello", (req, res) => {
-  //Query params
-  const { nome, idade } = req.query;
-
-  if (!nome || !idade) {
-    return res.status(400).json({
-      sucess: false,
-      message: "Nome e idade são informações obrigatórias",
-    });
-  }
+server.get("/customers", (req, res) => {
   return res.json({
     sucess: true,
-    message: `Olá ${nome}, você tem ${idade} anos`,
-    data: {
-      name: nome,
-      age: idade,
-    },
+    data: customers,
+  });
+});
+server.get("/customers/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const customer = customers.find((item) => item.id === id);
+  const status = customer ? 200 : 404;
+  return res.status(status).json({
+    sucess: true,
+    data: customer,
+  });
+});
+
+server.post("/customers", (req, res) => {
+  const { name, site } = req.body;
+  const id = customers[customers.length - 1].id + 1;
+  const customer = {
+    id,
+    name,
+    site,
+  };
+  customers.push(customer);
+  return res.status(201).json({
+    sucess: true,
+    data: customer,
   });
 });
 
