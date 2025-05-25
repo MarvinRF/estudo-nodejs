@@ -3,18 +3,18 @@ class CustomersController {
     this.customers = [
       {
         id: 1,
-        name: "Diego",
-        site: "rocketseat.com.br",
+        name: 'Diego',
+        site: 'rocketseat.com.br',
       },
       {
         id: 2,
-        name: "Gabriel",
-        site: "rocketseat.com.br",
+        name: 'Gabriel',
+        site: 'rocketseat.com.br',
       },
       {
         id: 3,
-        name: "Lucas",
-        site: "rocketseat.com.br",
+        name: 'Lucas',
+        site: 'rocketseat.com.br',
       },
     ];
   }
@@ -75,7 +75,7 @@ class CustomersController {
     if (index < 0) {
       return res.status(404).json({
         sucess: false,
-        message: "Customer not found",
+        message: 'Customer not found',
       });
     }
   }
@@ -90,13 +90,13 @@ class CustomersController {
       return res.status(status).json({
         sucess: true,
         data: {
-          message: "Customer deleted successfully",
+          message: 'Customer deleted successfully',
         },
       });
     }
     return res.status(404).json({
       sucess: false,
-      message: "Customer not found",
+      message: 'Customer not found',
     });
   }
 }
