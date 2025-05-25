@@ -6,7 +6,7 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs}'],
     plugins: { js },
-    extends: ['js/recommended'],
+    extends: ['js/recommended', 'prettier'],
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
